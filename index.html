@@ -452,6 +452,69 @@
   .edu-desc   { color: var(--muted); font-size: 0.91rem; max-width: 680px; }
   .coursework-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem; }
 
+/* CERTIFICATIONS */
+  .cert-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+  .cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    transition: all 0.22s;
+  }
+  .cert-card:hover {
+    border-color: rgba(27,58,107,0.28);
+    background: rgba(255,255,255,0.6);
+    transform: translateX(3px);
+  }
+  .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .cert-info { flex: 1; min-width: 0; }
+  .cert-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cert-issuer {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+  .cert-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+  .cert-btn {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .cert-view {
+    background: rgba(27,58,107,0.08);
+    color: var(--accent);
+    border: 1px solid rgba(27,58,107,0.2);
+  }
+  .cert-view:hover {
+    background: rgba(27,58,107,0.15);
+    border-color: rgba(27,58,107,0.35);
+  }
+  .cert-dl {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  .cert-dl:hover { background: #152E58; }
+
   /* EXPERIENCE */
   #experience { background: var(--bg); }
   .timeline { position: relative; padding-left: 2rem; }
@@ -874,12 +937,6 @@
         <div class="cert-issuer">IBM · Cognitive Class</div>
       </div>
       <div class="cert-actions">
-        <!--
-          Replace # with the path to your certificate file, e.g.:
-          href="certificates/ibm-data-science.pdf"   ← for a PDF
-          href="certificates/ibm-data-science.jpg"   ← for an image
-          Or use the direct Credly/badge URL if you have one
-        -->
         <a href="certificates/ibm-data-science.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-view">View</a>
         <a href="certificates/ibm-data-science.pdf" download="IBM_Data_Science_101_Ipeleng_Bahula.pdf" class="cert-btn cert-dl">⬇</a>
       </div>

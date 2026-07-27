@@ -100,9 +100,9 @@ To enable GitHub Pages on your own fork:
 ## Contact
 
 **Ipeleng Bahula**
-📧 your.email@example.com
-🔗 [LinkedIn](https://linkedin.com/in/yourprofile)
-🐙 [GitHub](https://github.com/yourusername)
+📧 ipelengbahula2@gmail.com
+🔗 [LinkedIn](https://linkedin.com/in/ipelengbahula)
+🐙 [GitHub](https://github.com/Ipeleng-Bahula)
 
 ---
 

@@ -84,6 +84,20 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
+  .nav-cv-btn {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.38rem 1rem;
+    border-radius: 7px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(27,58,107,0.2);
+  }
+  .nav-cv-btn:hover { background: #152E58; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(27,58,107,0.3); }
 
   section { padding: 6rem 6%; }
 
@@ -201,6 +215,21 @@
     animation: rotate 34s linear infinite reverse;
   }
   @keyframes rotate { to { transform: rotate(360deg); } }
+
+  /* Fallback circle shown when profile.jpeg is missing */
+  .hero-photo-placeholder {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 12px 48px rgba(27,58,107,0.18), 0 0 0 1px var(--border);
+    background: linear-gradient(135deg, rgba(27,58,107,0.08), rgba(13,124,154,0.06));
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    z-index: 1;
+  }
 
   /* Actual photo — used when profile.jpeg is present */
   .hero-photo {
@@ -531,12 +560,92 @@
     max-width: 480px;
     border: 1.5px solid var(--border);
     box-shadow: 0 2px 12px rgba(27,58,107,0.08);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.22s;
   }
+  .tl-photo:hover { box-shadow: 0 6px 24px rgba(27,58,107,0.18); border-color: rgba(27,58,107,0.3); }
   .tl-photo img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s;
+  }
+  .tl-photo:hover img { transform: scale(1.02); }
+  .tl-photo-hint {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(27,58,107,0.65));
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 1.5rem 0.85rem 0.6rem;
+    opacity: 0;
+    transition: opacity 0.22s;
+    pointer-events: none;
+  }
+  .tl-photo:hover .tl-photo-hint { opacity: 1; }
+
+  /* LIGHTBOX */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(10,12,20,0.88);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 88vh;
+    cursor: default;
+    animation: lbIn 0.22s ease both;
+  }
+  @keyframes lbIn {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lightbox-inner img {
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    color: var(--text);
+    transition: all 0.18s;
+    z-index: 1;
+  }
+  .lightbox-close:hover { background: var(--accent); color: #fff; transform: scale(1.1); }
+  .lightbox-caption {
+    text-align: center;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    margin-top: 0.85rem;
+    letter-spacing: 0.04em;
   }
 
   /* PROJECTS */
@@ -687,6 +796,7 @@
     .skills-grid, .projects-grid { grid-template-columns: 1fr 1fr; }
     .nav-links { display: none; }
     .avatar-wrap { display: none; }
+    .nav-cv-btn { display: none; }
   }
   @media (max-width: 600px) {
     .skills-grid, .projects-grid { grid-template-columns: 1fr; }
@@ -708,7 +818,10 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <span class="nav-badge">● Open to Internships</span>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="cv.pdf" download="Ipeleng_Bahula_CV.pdf" class="nav-cv-btn">⬇ Download CV</a>
+    <span class="nav-badge">● Open to Internships</span>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -723,7 +836,7 @@
       <h1>Hi, I'm<br><span class="name">Ipeleng Bahula</span></h1>
       <p class="hero-sub">A passionate CS student at Tshwane University of Technology who loves building software that solves real problems.</p>
       <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View My Projects →</a>
+        <a href="#projects" class="btn btn-primary">View My Projects</a>
         <a href="#contact" class="btn btn-ghost">Get in Touch</a>
       </div>
     </div>
@@ -732,7 +845,15 @@
     <div class="hero-photo-wrap">
       <div class="hero-photo-ring"></div>
       <div class="hero-photo-ring2"></div>
-      <img src="profile.jpeg" alt="Ipeleng Bahula" class="hero-photo">
+      <img
+        src="profile.jpeg"
+        alt="Ipeleng Bahula"
+        class="hero-photo"
+        onerror="this.style.display='none';document.getElementById('photo-fallback').style.display='flex';"
+      >
+      <div id="photo-fallback" class="hero-photo-placeholder" style="display:none;">
+        <span>🧑‍💻</span>
+      </div>
       <div class="hero-photo-badge">Open to WIL · August 2026</div>
     </div>
 
@@ -941,7 +1062,10 @@
       <div class="tl-role">IBM Datathon</div>
       <div class="tl-company">IBM · Competitive Data Challenge</div>
       <p class="tl-desc">Competed in IBM's data-focused hackathon, applying data analysis and visualisation skills to a real-world business dataset. Collaborated in a team to derive insights and present findings under time pressure.</p>
-      <div class="tl-photo"><img src="images/ibm-datathon.jpg" alt="IBM Datathon"></div>
+      <div class="tl-photo" onclick="openLightbox('images/ibm-datathon.jpg','IBM Datathon — Certificate of Participation')">
+        <img src="images/ibm-datathon.jpg" alt="IBM Datathon" onerror="this.parentElement.style.display='none'">
+        <div class="tl-photo-hint">🔍 Click to view full image</div>
+      </div>
     </div>
 
     <div class="timeline-item reveal">
@@ -949,7 +1073,10 @@
       <div class="tl-role">Telkom 10X Hack</div>
       <div class="tl-company">Telkom · Innovation Hackathon</div>
       <p class="tl-desc">Participated in Telkom's 10X Hack, building a tech solution addressing a South African connectivity challenge. Gained hands-on experience with rapid prototyping, team collaboration, and pitching to a panel of judges.</p>
-      <div class="tl-photo"><img src="images/telkom-10x.jpg" alt="Telkom 10X Hack"></div>
+      <div class="tl-photo" onclick="openLightbox('images/telkom-10x.jpg','Telkom 10X Hack — Participation Photo')">
+        <img src="images/telkom-10x.jpg" alt="Telkom 10X Hack" onerror="this.parentElement.style.display='none'">
+        <div class="tl-photo-hint">🔍 Click to view full image</div>
+      </div>
     </div>
 
     <div class="timeline-item reveal">
@@ -957,7 +1084,10 @@
       <div class="tl-role">MAISH Hackathon</div>
       <div class="tl-company">MAISH · AI &amp; Software Challenge</div>
       <p class="tl-desc">Developed an AI-assisted solution as part of the MAISH hackathon. Worked across the full project lifecycle — ideation, development, and demo — within a 24-hour window.</p>
-      <div class="tl-photo"><img src="images/maish-hackathon.png" alt="MAISH Hackathon"></div>
+      <div class="tl-photo" onclick="openLightbox('images/maish-hackathon.jpg','MAISH Hackathon — Participation Photo')">
+        <img src="images/maish-hackathon.jpg" alt="MAISH Hackathon" onerror="this.parentElement.style.display='none'">
+        <div class="tl-photo-hint">🔍 Click to view full image</div>
+      </div>
     </div>
 
   </div>
@@ -1092,7 +1222,38 @@
   <p>© 2025 <span>Ipeleng Bahula</span> · Computer Science Student · Built with care.</p>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
 <script>
+  function openLightbox(src, caption) {
+    const overlay = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-img').alt = caption;
+    document.getElementById('lightbox-caption').textContent = caption;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    // Close if clicking the overlay itself, the close button, or called directly
+    if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
